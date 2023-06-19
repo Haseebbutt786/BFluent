@@ -1,11 +1,18 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import {Spacer} from '../../components/Spacer';
 import {styles} from './styles';
 import {useNavigation} from '@react-navigation/native';
-// import auth from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 
 const LoginScreen = () => {
   const [emailData, setEmailData] = useState('');
@@ -13,27 +20,32 @@ const LoginScreen = () => {
 
   const navigation = useNavigation();
 
-  // const createUser = () => {
-  //   auth()
-  //     .createUserWithEmailAndPassword(emailData, passwordData)
-  //     .then(() => {
-  //       console.log('User account created & signed in!');
-  //     })
-  //     .catch(error => {
-  //       if (error.code === 'auth/email-already-in-use') {
-  //         console.log('That email address is already in use!');
-  //       }
+  useEffect(() => {
+    setEmailData(''), setPasswordData('');
+  }, []);
 
-  //       if (error.code === 'auth/invalid-email') {
-  //         console.log('That email address is invalid!');
-  //       }
+  const createUser = () => {
+    auth()
+      .signInWithEmailAndPassword(emailData, passwordData)
+      .then(() => {
+        console.log('User account created & signed in!');
+        navigation.navigate('ChooseLanguage' as never);
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
 
-  //       console.error(error);
-  //     });
-  // };
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+
+        console.error(error);
+      });
+  };
 
   return (
-    <View style={styles.safeareaContainer}>
+    <SafeAreaView style={styles.safeareaContainer}>
       <View style={styles.mainContainer}>
         <Spacer.Column numberOfSpaces={20} />
         <Text style={styles.headerText}>Hello Again</Text>
@@ -78,7 +90,7 @@ const LoginScreen = () => {
         <Button
           name={'Sign In'}
           style={styles.buttonContainer}
-          // onPress={() => createUser()}
+          onPress={() => createUser()}
           textStyle={styles.buttonTextContainer}
         />
         <Text style={styles.subTitle2}>Or Continue With</Text>
@@ -108,7 +120,7 @@ const LoginScreen = () => {
           </TouchableOpacity>
         </Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

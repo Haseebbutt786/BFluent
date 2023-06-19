@@ -1,19 +1,47 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
 import React, {useState} from 'react';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import {Spacer} from '../../components/Spacer';
 import {styles} from './styles';
 import {useNavigation} from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 
 const SignUpScreen = () => {
   const [emailData, setEmailData] = useState('');
   const [passwordData, setPasswordData] = useState('');
+  const [userName, setUserName] = useState('');
 
   const navigation = useNavigation();
 
+  const createUser = () => {
+    auth()
+      .createUserWithEmailAndPassword(emailData, passwordData)
+      .then(() => {
+        console.log('User account created & signed in!');
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+
+        console.error(error);
+      });
+  };
+
   return (
-    <View style={styles.safeareaContainer}>
+    <SafeAreaView style={styles.safeareaContainer}>
       <View style={styles.mainContainer}>
         <Spacer.Column numberOfSpaces={20} />
         <Text style={styles.headerText}>Sign Up</Text>
@@ -25,8 +53,8 @@ const SignUpScreen = () => {
           style={styles.inputField}
           typeOfKeyboard={undefined}
           iconStyle={undefined}
-          onChangeText={(text: any) => setEmailData(text)}
-          inputValue={emailData}
+          onChangeText={(text: any) => setUserName(text)}
+          inputValue={userName}
           onIconPress={undefined}
           secureTextEntry={undefined}
           multiline={undefined}
@@ -39,8 +67,8 @@ const SignUpScreen = () => {
           style={styles.inputField}
           typeOfKeyboard={undefined}
           iconStyle={undefined}
-          onChangeText={(text: any) => setPasswordData(text)}
-          inputValue={passwordData}
+          onChangeText={(text: any) => setEmailData(text)}
+          inputValue={emailData}
           onIconPress={undefined}
           secureTextEntry={undefined}
           multiline={undefined}
@@ -53,8 +81,8 @@ const SignUpScreen = () => {
           style={styles.inputField}
           typeOfKeyboard={undefined}
           iconStyle={undefined}
-          onChangeText={(text: any) => setEmailData(text)}
-          inputValue={emailData}
+          onChangeText={(text: any) => setPasswordData(text)}
+          inputValue={passwordData}
           onIconPress={undefined}
           secureTextEntry={undefined}
           multiline={undefined}
@@ -71,7 +99,7 @@ const SignUpScreen = () => {
         <Button
           name={'Sign Up'}
           style={styles.buttonContainer}
-          onPress={() => {}}
+          onPress={() => createUser()}
           textStyle={styles.buttonTextContainer}
         />
         <Text style={styles.subTitle2}>Or Sign Up With</Text>
@@ -101,7 +129,7 @@ const SignUpScreen = () => {
           </TouchableOpacity>
         </Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

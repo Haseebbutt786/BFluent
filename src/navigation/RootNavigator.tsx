@@ -1,17 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import SaplashScreen from '../screens/SaplashScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignupScreen';
+import ChooseLanguage from '../screens/ChooseLanguage';
 
 const Stack = createStackNavigator();
-
-const TestScreen = () => (
-  <View>
-    <Text>Splash Screen</Text>
-  </View>
-);
 
 export default function RootNavigator() {
   return (
@@ -29,6 +23,11 @@ export default function RootNavigator() {
       <Stack.Screen
         name="SignUpScreen"
         component={SignUpScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ChooseLanguage"
+        component={ChooseLanguage}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
