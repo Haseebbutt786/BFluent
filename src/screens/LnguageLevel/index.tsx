@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -7,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {styles} from './styles';
 import {HP, WP} from '../../services';
 import {useNavigation} from '@react-navigation/native';
@@ -16,7 +17,15 @@ import Level from '../../components/level';
 import Button from '../../components/Button';
 
 const LanguageLevel = () => {
+  const [isLevelSelected, setIsLevelSelected] = useState(false);
+
   const navigation = useNavigation();
+
+  const handleLevelSelect = () => {
+    setIsLevelSelected(prevState => !prevState);
+  };
+
+  console.log('--------->>', isLevelSelected);
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -44,40 +53,35 @@ const LanguageLevel = () => {
           <Level
             name={'Beginner'}
             style={undefined}
-            onPress={undefined}
-            textStyle={undefined}
+            onPress={() => handleLevelSelect()}
             source={require('../../assets/images/launch.png')}
           />
           <Spacer.Column numberOfSpaces={5} />
           <Level
             name={'Elementary'}
             style={undefined}
-            onPress={undefined}
-            textStyle={undefined}
+            onPress={() => handleLevelSelect()}
             source={require('../../assets/images/launch1.png')}
           />
           <Spacer.Column numberOfSpaces={5} />
           <Level
             name={'Intermediate'}
             style={undefined}
-            onPress={undefined}
-            textStyle={undefined}
+            onPress={() => handleLevelSelect()}
             source={require('../../assets/images/launch2.png')}
           />
           <Spacer.Column numberOfSpaces={5} />
           <Level
             name={'Upper Intermediate'}
             style={undefined}
-            onPress={undefined}
-            textStyle={undefined}
+            onPress={() => handleLevelSelect()}
             source={require('../../assets/images/launch3.png')}
           />
           <Spacer.Column numberOfSpaces={5} />
           <Level
             name={'Advanced'}
             style={undefined}
-            onPress={undefined}
-            textStyle={undefined}
+            onPress={() => handleLevelSelect()}
             source={require('../../assets/images/launch4.png')}
           />
         </ScrollView>
@@ -85,10 +89,16 @@ const LanguageLevel = () => {
           name={'Continue'}
           style={{
             alignSelf: 'center',
-            backgroundColor: '#6B39BD',
+            backgroundColor: isLevelSelected ? '#6B39BD' : '#CACACA',
             marginBottom: 10,
+            borderColor: isLevelSelected ? '#red' : 'transparent',
+            borderWidth: 3,
           }}
-          onPress={() => navigation.navigate('SelectTopic' as never)}
+          onPress={() => {
+            isLevelSelected
+              ? navigation.navigate('SelectTopic' as never)
+              : Alert.alert('choose some option');
+          }}
           textStyle={{
             color: '#fff',
             alignSelf: 'center',

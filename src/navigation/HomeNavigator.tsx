@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import ChooseLanguage from '../screens/ChooseLanguage';
 import LanguageLevel from '../screens/LnguageLevel';
 import SelectTopic from '../screens/SelectTopicScreen';
+import ChatScreen from '../screens/ChatScreen';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,11 @@ export default function HomeNavigator() {
       <Stack.Screen
         name="SelectTopic"
         component={SelectTopic}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ChatScreen"
+        component={ChatScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

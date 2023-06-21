@@ -21,18 +21,21 @@ const Input = ({
   onIconPress,
   secureTextEntry,
   multiline,
+  placeholderTextColor,
+  TextInputStyle
+
 }) => {
   return (
     <View style={[styles.mainText, style]}>
       <TextInput
         value={inputValue}
-        style={styles.input}
+        style={[styles.input, TextInputStyle]}
 
         // value={number}
         onChangeText={onChangeText}
         multiline={multiline}
         placeholder={PlaceHolder}
-        placeholderTextColor={theme.colors.gray70}
+        placeholderTextColor={placeholderTextColor}
         keyboardType={typeOfKeyboard}
         secureTextEntry={secureTextEntry}>
         {children}
@@ -48,9 +51,8 @@ export default Input;
 
 const styles = StyleSheet.create({
   input: {
-    color: 'black',
     flex: 1,
-    fontSize: 20
+    fontSize: 20,
   },
   mainText: {
     flexDirection: 'row',
