@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
+  ScrollView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Button from '../../components/Button';
@@ -46,8 +47,8 @@ const LoginScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeareaContainer}>
-      <View style={styles.mainContainer}>
-        <Spacer.Column numberOfSpaces={20} />
+      <ScrollView contentContainerStyle={styles.mainContainer}>
+        <Spacer.Column numberOfSpaces={15} />
         <Text style={styles.headerText}>Hello Again</Text>
         <Spacer.Column numberOfSpaces={5} />
         <Text style={styles.subTitle}>
@@ -66,6 +67,8 @@ const LoginScreen = () => {
           onIconPress={undefined}
           secureTextEntry={undefined}
           multiline={undefined}
+          placeholderTextColor={undefined}
+          TextInputStyle={undefined}
         />
         <Spacer.Column numberOfSpaces={4} />
         <Input
@@ -80,13 +83,14 @@ const LoginScreen = () => {
           onIconPress={undefined}
           secureTextEntry={undefined}
           multiline={undefined}
+          placeholderTextColor={undefined}
+          TextInputStyle={undefined}
         />
 
         <TouchableOpacity style={styles.touchableText}>
           <Text style={styles.subTitle1}>Recover Password</Text>
         </TouchableOpacity>
         <Spacer.Column numberOfSpaces={10} />
-
         <Button
           name={'Sign In'}
           style={styles.buttonContainer}
@@ -119,7 +123,7 @@ const LoginScreen = () => {
             <Text style={styles.subTitle4}> Sign Up</Text>
           </TouchableOpacity>
         </Text>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

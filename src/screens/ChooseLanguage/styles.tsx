@@ -16,7 +16,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     //   justifyContent: 'center',
   },
-  headerText: {fontSize: 35, fontWeight: 'bold', color: 'black'},
+  headerText: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    color: 'black',
+    marginVertical: 10,
+  },
   subTitle: {
     fontSize: 20,
     fontWeight: '300',

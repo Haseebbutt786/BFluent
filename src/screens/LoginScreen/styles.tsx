@@ -1,7 +1,12 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  safeareaContainer: {flex: 1, backgroundColor: '#DEDEDE'},
+  safeareaContainer: {
+    flex: 1,
+    backgroundColor: '#DEDEDE',
+
+    // alignItems: 'center',
+  },
   inputField: {
     backgroundColor: '#FFf',
     borderRadius: 20,
@@ -9,11 +14,14 @@ export const styles = StyleSheet.create({
     width: '95%',
     paddingHorizontal: 25,
     paddingVertical: 22,
+    flex: 1,
   },
   mainContainer: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: '#DEDEDE',
     alignItems: 'center',
+    marginBottom: 50,
+    paddingBottom: 90,
     //   justifyContent: 'center',
   },
   headerText: {fontSize: 35, fontWeight: 'bold', color: 'black'},

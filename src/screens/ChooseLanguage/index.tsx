@@ -9,6 +9,9 @@ import React from 'react';
 import Flag from 'react-native-country-flag';
 import {useNavigation} from '@react-navigation/native';
 import Button from '../../components/Button';
+import auth from '@react-native-firebase/auth';
+import {HP} from '../../services';
+import {styles} from './styles';
 
 const ChooseLanguage = () => {
   const navigation = useNavigation();
@@ -57,28 +60,48 @@ const ChooseLanguage = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{paddingHorizontal: 20, flex: 1}}>
+      <View style={{paddingHorizontal: 10}}>
+        <Text style={styles.headerText}>Select Level</Text>
+      </View>
       <View
         style={{
-          // alignItems: 'center',
           justifyContent: 'space-between',
           paddingHorizontal: 10,
-          paddingVertical: 10,
-          height: '100%',
-          // width: '100%',
+          flex: 1,
         }}>
         <FlagList />
-        <Button
-          name={'Continue'}
-          style={{alignSelf: 'center', backgroundColor: '#6B39BD'}}
-          onPress={undefined}
-          textStyle={{
-            color: '#fff',
-            alignSelf: 'center',
-            fontSize: 20,
-            fontWeight: '600',
-          }}
-        />
+        <View style={{}}>
+          <Button
+            name={'LogOut'}
+            style={{
+              alignSelf: 'center',
+              backgroundColor: '#6B39BD',
+            }}
+            onPress={() => auth().signOut()}
+            textStyle={{
+              color: '#fff',
+              alignSelf: 'center',
+              fontSize: 20,
+              fontWeight: '600',
+            }}
+          />
+          <Button
+            name={'Continue'}
+            style={{
+              alignSelf: 'center',
+              backgroundColor: '#6B39BD',
+              marginVertical: 10,
+            }}
+            onPress={undefined}
+            textStyle={{
+              color: '#fff',
+              alignSelf: 'center',
+              fontSize: 20,
+              fontWeight: '600',
+            }}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );

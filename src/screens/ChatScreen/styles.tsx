@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {HP} from '../../services';
 
 export const styles = StyleSheet.create({
   safeareaContainer: {flex: 1, backgroundColor: '#DEDEDE'},
@@ -74,11 +75,9 @@ export const styles = StyleSheet.create({
     marginTop: 15,
     paddingHorizontal: 20,
   },
-  subTitle4: {
-    fontSize: 19,
-    fontWeight: '400',
-    color: '#6B39BD',
-    marginTop: 15,
-    paddingHorizontal: 20,
+  bottomBar: {
+    // position: 'absolute',
+
+    backgroundColor: 'red',
   },
 });

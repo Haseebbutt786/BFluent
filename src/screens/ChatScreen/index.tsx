@@ -9,8 +9,9 @@ import {
   View,
   KeyboardAvoidingView,
   Platform,
+  Dimensions,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {styles} from './styles';
 import {HP, WP} from '../../services';
 import {useNavigation} from '@react-navigation/native';
@@ -28,8 +29,6 @@ const ChatScreen = () => {
     setIsLevelSelected(prevState => !prevState);
   };
 
-  console.log('--------->>', isLevelSelected);
-
   const currentDate = new Date();
 
   const day = currentDate.getDate(); // Get the day of the month
@@ -42,15 +41,23 @@ const ChatScreen = () => {
   const formattedDate = `${day} ${month} - ${time}`;
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#6B39BD'}}>
+    <View style={{flex: 1, backgroundColor: '#6B39BD'}}>
       <KeyboardAvoidingView
         style={{
           flex: 1,
           backgroundColor: '#6B39BD',
+
           justifyContent: 'flex-end',
         }}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <View style={{paddingVertical: 20}}>
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        // keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0}
+      >
+        <View
+          style={{
+            paddingVertical: 20,
+            height: HP('20'),
+            justifyContent: 'flex-end',
+          }}>
           <Text style={{alignSelf: 'center', color: '#fff'}}>Travel</Text>
           <View
             style={{
@@ -86,39 +93,59 @@ const ChatScreen = () => {
             //   alignItems: 'center',
             // flex: 1,
             paddingHorizontal: 20,
+            height: HP('80'),
           }}>
           <Spacer.Column numberOfSpaces={7} />
-          <Image
-            style={{
-              height: '45%',
-              width: WP('92'),
-              marginHorizontal: 10,
-              borderRadius: 10,
-              alignSelf: 'center',
-            }}
-            source={require('../../assets/images/travel1.png')}
-          />
-          <Spacer.Column numberOfSpaces={8} />
-          <Text style={{alignSelf: 'center', color: '#000'}}>
-            {formattedDate}
-          </Text>
-          <Spacer.Column numberOfSpaces={8} />
-          <View
-            style={{
-              width: WP('60'),
-              backgroundColor: '#6B39BD',
-              borderBottomRightRadius: 15,
-              borderTopLeftRadius: 15,
-              borderTopRightRadius: 15,
-              paddingHorizontal: 10,
-              paddingVertical: 15,
-            }}>
-            <Text style={{color: '#fff'}}>
-              Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is
-              simply dummy text of the printing{' '}
+          <ScrollView style={{height: HP('65')}}>
+            <Image
+              style={{
+                height: HP('25'),
+                width: WP('92'),
+                marginHorizontal: 10,
+                borderRadius: 10,
+                alignSelf: 'center',
+              }}
+              source={require('../../assets/images/travel1.png')}
+            />
+            <Spacer.Column numberOfSpaces={8} />
+            <Text style={{alignSelf: 'center', color: '#000'}}>
+              {formattedDate}
             </Text>
-          </View>
-          <Spacer.Column numberOfSpaces={8} />
+            <Spacer.Column numberOfSpaces={8} />
+            <View
+              style={{
+                width: WP('60'),
+                backgroundColor: '#6B39BD',
+                borderBottomRightRadius: 15,
+                borderTopLeftRadius: 15,
+                borderTopRightRadius: 15,
+                paddingHorizontal: 10,
+                paddingVertical: 15,
+              }}>
+              <Text style={{color: '#fff'}}>
+                Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is
+                simply dummy text of the printing{' '}
+              </Text>
+            </View>
+            <View
+              style={{
+                width: WP('60'),
+                backgroundColor: '#fff',
+                // borderBottomRightRadius: 15,
+                borderBottomLeftRadius: 15,
+                borderTopLeftRadius: 15,
+                borderTopRightRadius: 15,
+                paddingHorizontal: 10,
+                paddingVertical: 15,
+                marginVertical: 10,
+                alignSelf: 'flex-end',
+              }}>
+              <Text style={{color: '#000'}}>
+                Lorem Ipsum is simply dummy text of the printing Lorem Ipsum.{' '}
+              </Text>
+            </View>
+          </ScrollView>
+          {/* <Spacer.Column numberOfSpaces={8} /> */}
           <Input
             children={undefined}
             PlaceHolder={'Type Message'}
@@ -139,9 +166,10 @@ const ChatScreen = () => {
             multiline={undefined}
             placeholderTextColor={'gray'}
           />
+          <Spacer.Column numberOfSpaces={5} />
         </View>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 };
 
