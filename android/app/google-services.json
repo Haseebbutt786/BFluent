@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "902406416440",
+    "project_id": "beeefluent",
+    "storage_bucket": "beeefluent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902406416440:android:faae0f2181edce0b131ecd",
+        "android_client_info": {
+          "package_name": "com.fluent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902406416440-5505pd9b1p0g2reff1a7g4j3hj87cgd1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fluent",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "902406416440-98qpkaedci0ml14eifvjibkpm6q14ee6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBFMW4BAV1gVSJK8bM0mUbhJVkU5L9Ezw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902406416440-98qpkaedci0ml14eifvjibkpm6q14ee6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "902406416440-7q5pl94ou8im6709g4ms2mdbbtjaite2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.BeeeFluent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
